@@ -70,7 +70,7 @@ library(tidyverse)
 
 problem2_df = tibble(
   norm_samp = rnorm(10),
-  vec_logical = c(TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE),
+  vec_logical = norm_samp > 0,
   vec_char = c("This", "is", "an", "example", "data", "set", "from", "question", "number", "two"),
   vec_factor = factor(c("High School", "High School", "High School", "Bachelor's Degre", "Bachelor's Degre", "Bachelor's Degre", "Master's Degree", "Master's Degree", "Bachelor's Degre", "Master's Degree"),
                   levels = c("High School", "Bachelor's Degre", "Master's Degree"), labels = c(1, 2, 3))
