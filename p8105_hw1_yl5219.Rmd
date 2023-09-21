@@ -1,0 +1,36 @@
+---
+title: "Homework 1"
+author: "Yuqing Liu"
+date: 2023-09-14
+output: github_document
+---
+
+# Problem 1
+Load the moderndive library, and use the following code to load the early_january_weather dataset.
+```{r}
+library(moderndive)
+data("early_january_weather")
+```
+Write a short description of the dataset using inline R code. To do this, I used the str() function to see the structure of the dataset.
+```{r}
+str(early_january_weather)
+summary(early_january_weather)
+```
+
+We can find the number of rows (observations) and columns (variables) in the dataset using the nrow() and ncol().
+```{r}
+nrow(early_january_weather)
+ncol(early_january_weather)
+```
+
+We can find the mean temperature using the mean().
+```{r}
+mean(early_january_weather$temp)
+```
+
+Discussion:
+The important variable in this dataset is temp (temperature). The value of temp ranges from 24.08 to 57.92.
+The dataset has 358 rows and 15 columns.
+The mean temperature is 39.58.
+
+
