@@ -108,6 +108,8 @@ The variable in the random sample (`norm_samp`) and the logical vector (`vec_log
 
 This is because the variable in the random sample (`norm_samp`) is numeric (aka contain numbers). Among the logical vector, TRUE is treated as the number 1, and FALSE is treated as number 0. The mean is calculated as the proportion of TRUE. We can only do mean calcualtion for variable that include numbers. 
 
+
+
 Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output) and see what happened. We will also see whether this help explain what happens when we try to take the mean.
 
 We create a new variable `vec_char_num` when writing as.numeric for the character vector, and a new variable `vec_fac_num` for factor vector. 
