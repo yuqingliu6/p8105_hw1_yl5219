@@ -35,7 +35,7 @@ The dataset has 358 rows and 15 columns.
 The important variable in this dataset are temp (temperature), humid(humidity), and time_hour. 
 The value of temp (temperature) ranges from 24.08 to 57.92. The mean temperature is 39.58.
 The value of humid(humidity) ranges from 32.86 to 100.00. The mean humidity is 65.48. 
-The value of time_hour ranges from 2013-01-01 01:00:00 to 2013-01-15 23:00:. The mean humidity is 2013-01-08 12:28:09 EST.
+The value of time_hour ranges from 2013-01-01 01:00:00 to 2013-01-15 23:00:00. The mean humidity is 2013-01-08 12:28:09 EST.
 
 Make a scatterplot of temp (y) vs time_hour (x); color points using the humid variable (adding color = ... inside of aes in your ggplot code should help). Describe patterns that are apparent in this plot.
 
