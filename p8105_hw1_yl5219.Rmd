@@ -5,6 +5,10 @@ date: 2023-09-14
 output: github_document
 ---
 
+```{r include=FALSE}
+library(tidyverse)
+```
+
 # Problem 1
 Load the moderndive library, and use the following code to load the `early_january_weather` dataset.
 ```{r}
@@ -31,11 +35,18 @@ mean(early_january_weather$time_hour)
 ```
 
 Discussion:
-The dataset has 358 rows and 15 columns.
-The important variable in this dataset are `temp` (temperature), `humid` (humidity), and `time_hour`. 
-The value of `temp` (temperature) ranges from 24.08 to 57.92. The mean temperature is 39.58.
-The value of `humid` (humidity) ranges from 32.86 to 100.00. The mean humidity is 65.48. 
-The value of `time_hour` ranges from 2013-01-01 01:00:00 to 2013-01-15 23:00:00. The mean humidity is 2013-01-08 12:28:09.
+
+* The important variable in this dataset are `temp` (temperature), `humid` (humidity), and `time_hour`. Their values are shown below with the mean of `temp` (temperature) included. 
+
+* The value of `temp` (temperature) ranges from 24.08 to 57.92. The mean temperature is 39.58.
+
+* The value of `humid` (humidity) ranges from 32.86 to 100.00. The mean humidity is 65.48. 
+
+* The value of `time_hour` ranges from 2013-01-01 01:00:00 to 2013-01-15 23:00:00. The mean humidity is 2013-01-08 12:28:09.
+
+* The dataset has 358 rows and 15 columns.
+
+* As is mentioned above, the mean of temperature is 39.58 F.
 
 Make a scatterplot of temp (y) vs time_hour (x); color points using the humid variable (adding color = ... inside of aes in your ggplot code should help). Describe patterns that are apparent in this plot.
 
@@ -44,7 +55,8 @@ load the ggplot2 library:
 library(ggplot2)
 ```
 
-create scatterplot:
+create scatterplot: 
+(For the color part, I used blue color to represent higher humidity and red color to represent lower humidity.)
 ```{r yx_scatter}
 scatterplot <- ggplot(data = early_january_weather, aes(x = time_hour, y = temp, color = humid)) +
   geom_point() +
@@ -52,7 +64,7 @@ scatterplot <- ggplot(data = early_january_weather, aes(x = time_hour, y = temp,
   scale_color_gradient(low = "red", high = "blue")
 scatterplot
 ```
-export the scatterplot to the project directory using ggsave:
+export the scatterplot to the project directory using `ggsave`:
 ```{r}
 ggsave("scatterplot.png", plot = scatterplot, width = 8, height = 6, units = "in")
 ```
@@ -61,14 +73,12 @@ ggsave("scatterplot.png", plot = scatterplot, width = 8, height = 6, units = "in
 
 Create a data frame comprised of:
 
-a random sample of size 10 from a standard Normal distribution
-a logical vector indicating whether elements of the sample are greater than 0
-a character vector of length 10
-a factor vector of length 10, with 3 different factor “levels”
+* a random sample of size 10 from a standard Normal distribution
+* a logical vector indicating whether elements of the sample are greater than 0
+* a character vector of length 10
+* a factor vector of length 10, with 3 different factor “levels”
 
 ```{r}
-library(tidyverse)
-
 problem2_df = tibble(
   norm_samp = rnorm(10),
   vec_logical = norm_samp > 0,
@@ -79,20 +89,21 @@ problem2_df = tibble(
 
 ```
 
-Try to take the mean of each variable in your dataframe. What works and what doesn’t?
-```{r}
+Take the mean of each variable in your dataframe and determine which works and what doesn’t.
+```{r, warning=FALSE}
 mean(problem2_df$norm_samp)
 mean(problem2_df$vec_logical)
 mean(problem2_df$vec_char)
 mean(problem2_df$vec_factor)
 ```
 The variable in the random sample (`norm_samp`) and the logical vector (`vec_logical`) worked when taking the mean. However, the character vector (`vec_char`) and factor vector (`vec_factor`) did not work. 
-This is because the variable in the random sample (`norm_samp`) is numeric (aka contain numbers). Among the logical vector, TRUE is treated as the number 1, and FALSE is treated as number 0. We can only do mean calcualtion for variable that include numbers. 
 
-Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output). What happens, and why? Does this help explain what happens when you try to take the mean?
+This is because the variable in the random sample (`norm_samp`) is numeric (aka contain numbers). Among the logical vector, TRUE is treated as the number 1, and FALSE is treated as number 0. The mean is calculated as the proportion of TRUE. We can only do mean calcualtion for variable that include numbers. 
+
+Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output) and see what happened. We will also see whether this help explain what happens when we try to take the mean.
 
 We create a new variable `vec_char_num` when writing as.numeric for the character vector, and a new variable `vec_fac_num` for factor vector. 
-```{r}
+```{r, results = "hide", warning=FALSE}
 vec_char_num <- as.numeric(problem2_df$vec_char)
 vec_char_num 
 vec_fac_num <- as.numeric(problem2_df$vec_factor)
@@ -105,6 +116,6 @@ mean(vec_char_num)
 mean(vec_fac_num)
 ```
 
-After writing the as.numeric, the factor vector (`vec_factor`) can work when taking the mean. However, the character vector (`vec_char`) still do not work. 
+Yes, this helped explain what happens when you try to take the mean. After writing the as.numeric, the factor vector (`vec_factor`) can work when taking the mean. However, the character vector (`vec_char`) still do not work. 
 
 This is becuase as.numeric function treated variables in the logical vector (`vec_logical`) as numbers. Now, we can calculate the mean for the converted logical vector (`vec_fac_num`) as it is now numeric. However, the character vector cannot be converted to numeric. So, we still cannot do mean calculation for the character variable. 
