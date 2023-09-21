@@ -90,11 +90,11 @@ problem2_df = tibble(
 ```
 
 Take the mean of each variable in your dataframe and determine which works and what doesn’t.
-```{r, warning=FALSE}
-mean(problem2_df$norm_samp)
-mean(problem2_df$vec_logical)
-mean(problem2_df$vec_char)
-mean(problem2_df$vec_factor)
+```{r}
+mean(pull(problem2_df,norm_samp))
+mean(pull(problem2_df,vec_logical))
+mean(pull(problem2_df,vec_char))
+mean(pull(problem2_df,vec_factor))
 ```
 The variable in the random sample (`norm_samp`) and the logical vector (`vec_logical`) worked when taking the mean. However, the character vector (`vec_char`) and factor vector (`vec_factor`) did not work. 
 
