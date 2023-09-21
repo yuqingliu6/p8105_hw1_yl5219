@@ -55,6 +55,7 @@ library(ggplot2)
 ```
 
 create scatterplot: 
+
 (for the color part, I used blue color to represent higher humidity and red color to represent lower humidity)
 
 ```{r yx_scatter}
@@ -65,7 +66,9 @@ scatterplot <- ggplot(data = early_january_weather, aes(x = time_hour, y = temp,
 scatterplot
 ```
 Describe the findings in this plot:
-As time progressed, there was a noticeable upward trend in temperature, and humidity levels also exhibited an increase throughout January 2013.
+
+As time progressed, there was a noticeable upward trend in temperature, and humidity levels also exhibited an increase from 01 January, 2013 to 15 January, 2013.
+
 
 export the scatterplot to the project directory using `ggsave`:
 ```{r}
